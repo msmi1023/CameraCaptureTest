@@ -9,6 +9,7 @@
 #import "SecondViewController.h"
 #import "VideoSource.h"
 #import <opencv2/opencv.hpp>
+#import "PatternDetector.h"
 
 @interface SecondViewController () <VideoSourceDelegate>
 
@@ -20,12 +21,38 @@
 
 @implementation SecondViewController
 
+PatternDetector * m_detector;
+NSTimer * m_trackingTimer;
+
+UIView *indicator;
+
 - (void)viewDidLoad {
 	[super viewDidLoad];
+	
+	indicator = [[UIView alloc] initWithFrame:CGRectMake(10, 20, 200, 10)];
+	[indicator setBackgroundColor:[UIColor redColor]];
+	[self.view addSubview:indicator];
 	
 	self.videoSource = [[VideoSource alloc] init];
 	self.videoSource.delegate = self;
 	[self.videoSource startWithDevicePosition:AVCaptureDevicePositionBack];
+	
+	//set up pattern tracking
+	UIImage *imageToTrack = [UIImage imageNamed:@"target.jpg"];
+	m_detector = new PatternDetector([self toCVMat:imageToTrack]);
+	
+	//start tracking timer
+	m_trackingTimer = [NSTimer scheduledTimerWithTimeInterval:(1.0f/20.0f) target:self selector:@selector(updateTracking:) userInfo:nil repeats:YES];
+}
+
+- (void)updateTracking:(NSTimer *)timer {
+	if(m_detector->isTracking()) {
+		NSLog(@"YES: %f", m_detector->matchValue());
+		[indicator setBackgroundColor:[UIColor greenColor]];
+	} else {
+		NSLog(@"NO: %f", m_detector->matchValue());
+		[indicator setBackgroundColor:[UIColor redColor]];
+	}
 }
 
 - (void)frameReady:(VideoFrame)frame {
@@ -48,6 +75,9 @@
 		[[_weakSelf backgroundImageView] setImage:image];
 	
 	});
+	
+	//check each frame against our detector!
+	m_detector->scanFrame(frame);
 }
 
 - (cv::Mat)toCVMat:(UIImage *)image {

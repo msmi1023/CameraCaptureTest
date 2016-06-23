@@ -35,7 +35,6 @@
 		D483D9361D1B051800E6C6FE /* CameraCaptureTest.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraCaptureTest.pch; sourceTree = "<group>"; };
 		D483D9371D1B06A600E6C6FE /* SecondViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecondViewController.h; sourceTree = "<group>"; };
 		D483D9381D1B06A600E6C6FE /* SecondViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SecondViewController.mm; sourceTree = "<group>"; };
-		D483D93B1D1B077300E6C6FE /* CameraCalibration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CameraCalibration.h; sourceTree = "<group>"; };
 		D483D93C1D1B077300E6C6FE /* VideoFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoFrame.h; sourceTree = "<group>"; };
 		D483D93D1D1B077300E6C6FE /* VideoSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoSource.h; sourceTree = "<group>"; };
 		D483D93E1D1B077300E6C6FE /* VideoSource.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = VideoSource.mm; sourceTree = "<group>"; };
@@ -124,7 +123,6 @@
 		D483D93A1D1B077300E6C6FE /* Video Source */ = {
 			isa = PBXGroup;
 			children = (
-				D483D93B1D1B077300E6C6FE /* CameraCalibration.h */,
 				D483D93C1D1B077300E6C6FE /* VideoFrame.h */,
 				D483D93D1D1B077300E6C6FE /* VideoSource.h */,
 				D483D93E1D1B077300E6C6FE /* VideoSource.mm */,
